@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الخطة الإعلانية — الدهمشي للخياطة العسكرية</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { overflow-x: hidden; max-width: 100%; }
+body { font-family: 'Cairo', 'Segoe UI', 'Tahoma', Arial, sans-serif; line-height: 1.7; color: #1a1a1a; background: #f6f5ef; direction: rtl; }
+.container { max-width: 1100px; margin: 0 auto; padding: 24px 14px; width: 100%; }
+
+.header { background: linear-gradient(135deg, #1f2616 0%, #3a4728 55%, #556b2f 100%); color: white; padding: 36px 20px; border-radius: 16px; margin-bottom: 24px; text-align: center; position: relative; overflow: hidden; }
+.header::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(ellipse at center, rgba(255,255,255,0.06) 0%, transparent 60%); }
+.header .brand { font-size: 30px; font-weight: 900; color: #fff; margin-bottom: 6px; position: relative; letter-spacing: 1px; }
+.header .brand span { color: #faa816; }
+.header h1 { font-size: 16px; font-weight: 500; opacity: 0.85; margin-bottom: 6px; position: relative; }
+.accent-bar { height: 4px; width: 80px; background: #faa816; margin: 12px auto; border-radius: 2px; }
+.platform-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.14); border-radius: 24px; padding: 8px 16px; font-size: 13px; font-weight: 700; margin-top: 12px; position: relative; flex-wrap: wrap; justify-content: center; }
+
+.section { background: white; border-radius: 12px; padding: 20px 16px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); overflow: hidden; }
+.section-title { font-size: 18px; font-weight: 700; color: #1a1a1a; margin-bottom: 6px; border-right: 5px solid #556b2f; padding-right: 12px; }
+.section-sub { font-size: 13px; color: #64748b; margin-bottom: 18px; padding-right: 17px; }
+.sub-head { font-size: 13px; font-weight: 700; color: #3a4728; margin: 18px 0 8px; }
+
+.metrics-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 20px; }
+@media (min-width: 600px) { .metrics-grid { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); } }
+.metric-card { padding: 16px; border-radius: 10px; border: 2px solid #e7e5d6; position: relative; }
+.metric-card.dark { background: linear-gradient(135deg, #1f2616, #2f3a20); color: white; border: none; }
+.metric-card.olive { background: linear-gradient(135deg, #556b2f, #3a4728); color: white; border: none; }
+.metric-card.gold { background: linear-gradient(135deg, #e09400, #b87600); color: white; border: none; }
+.metric-card.blue { background: linear-gradient(135deg, #1565c0, #0d47a1); color: white; border: none; }
+.metric-card.muted { background: #f8f7f0; }
+.metric-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; opacity: 0.8; margin-bottom: 4px; }
+.metric-value { font-size: 20px; font-weight: 700; line-height: 1.1; }
+.metric-sub { font-size: 11px; opacity: 0.75; margin-top: 4px; }
+
+.table-wrap { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 10px; border: 1px solid #e7e5d6; }
+.cmp-table { width: 100%; min-width: 720px; border-collapse: collapse; font-size: 12.5px; }
+.cmp-table th { background: #1f2616; color: white; padding: 10px 12px; text-align: right; font-size: 11.5px; font-weight: 700; white-space: nowrap; }
+.cmp-table th.us { background: #b87600; }
+.cmp-table td { padding: 10px 12px; border-bottom: 1px solid #eeece0; vertical-align: top; color: #334155; }
+.cmp-table td:first-child { font-weight: 700; color: #1a1a1a; background: #f8f7f0; white-space: nowrap; }
+.cmp-table td.us { background: #fff8e8; }
+.cmp-table tr:last-child td { border-bottom: none; }
+.cmp-table tr.total td { background: #f1f0e4; font-weight: 700; }
+.cmp-table tr.grand-total td { background: #1f2616; color: white; font-weight: 700; }
+
+.badge { display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 10px; }
+.badge-olive { background: #e8eddc; color: #3a4728; }
+.badge-gold { background: #fef3c7; color: #92400e; }
+.badge-green { background: #d1fae5; color: #065f46; }
+.badge-red { background: #fee2e2; color: #991b1b; }
+.badge-blue { background: #dbeafe; color: #1e40af; }
+
+.insight-box { border-radius: 10px; padding: 20px; margin-bottom: 16px; border-right: 4px solid; }
+.insight-box.critical { background: #fff5f5; border-color: #e53935; }
+.insight-box.warning { background: #fffbeb; border-color: #f59e0b; }
+.insight-box.success { background: #f0fdf4; border-color: #22c55e; }
+.insight-box.info { background: #f4f6ee; border-color: #556b2f; }
+.insight-box.gold { background: #fffaf0; border-color: #e09400; }
+.insight-title { font-size: 14px; font-weight: 700; margin-bottom: 8px; }
+.critical .insight-title { color: #991b1b; }
+.warning .insight-title { color: #92400e; }
+.success .insight-title { color: #14532d; }
+.info .insight-title { color: #3a4728; }
+.gold .insight-title { color: #7c5a05; }
+.insight-text { font-size: 13px; line-height: 1.7; color: #475569; }
+.action-list { margin-top: 10px; margin-right: 16px; }
+.action-list li { font-size: 13px; color: #334155; margin-bottom: 4px; }
+
+/* SWOT */
+.swot-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
+@media (min-width: 700px) { .swot-grid { grid-template-columns: 1fr 1fr; } }
+.swot-card { border-radius: 12px; padding: 18px; border-top: 5px solid; }
+.swot-card.s { background: #f0fdf4; border-color: #16a34a; }
+.swot-card.w { background: #fff5f5; border-color: #dc2626; }
+.swot-card.o { background: #eff6ff; border-color: #2563eb; }
+.swot-card.t { background: #fffbeb; border-color: #d97706; }
+.swot-head { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.swot-letter { width: 34px; height: 34px; border-radius: 8px; color: white; font-weight: 900; font-size: 18px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.s .swot-letter { background: #16a34a; } .w .swot-letter { background: #dc2626; } .o .swot-letter { background: #2563eb; } .t .swot-letter { background: #d97706; }
+.swot-title { font-size: 15px; font-weight: 700; }
+.s .swot-title { color: #14532d; } .w .swot-title { color: #991b1b; } .o .swot-title { color: #1e3a8a; } .t .swot-title { color: #92400e; }
+.swot-list { margin-right: 18px; }
+.swot-list li { font-size: 12.5px; color: #334155; margin-bottom: 7px; line-height: 1.7; }
+
+/* Competitor cards */
+.comp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; margin-top: 18px; }
+.platform-card { border-radius: 12px; padding: 18px; background: white; box-shadow: 0 1px 3px rgba(0,0,0,0.07); border-right: 4px solid #556b2f; border: 1px solid #eeece0; border-right-width: 4px; border-right-color: #556b2f; }
+.platform-card-title { font-size: 15px; font-weight: 700; margin-bottom: 4px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px; }
+.platform-card-url { font-size: 11px; color: #64748b; margin-bottom: 10px; direction: ltr; text-align: right; }
+.platform-card-row { display: flex; justify-content: space-between; font-size: 12.5px; color: #475569; padding: 6px 0; border-bottom: 1px dashed #e7e5d6; gap: 10px; }
+.platform-card-row:last-child { border-bottom: none; }
+.platform-card-row b { color: #1a1a1a; text-align: left; }
+.mini-label { font-size: 11px; font-weight: 700; margin: 10px 0 4px; }
+.mini-label.plus { color: #15803d; } .mini-label.minus { color: #b91c1c; }
+.mini-list { margin-right: 16px; }
+.mini-list li { font-size: 12px; color: #475569; margin-bottom: 3px; }
+
+.pillar-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+.pillar-card { padding: 16px; border-radius: 10px; background: #f8f7f0; border-right: 4px solid #556b2f; }
+.pillar-title { font-size: 13px; font-weight: 700; color: #3a4728; margin-bottom: 6px; }
+.pillar-text { font-size: 12px; color: #475569; line-height: 1.7; }
+
+.objective-list { display: flex; flex-direction: column; gap: 12px; }
+.objective-item { padding: 16px 18px; border-radius: 10px; background: #f8f7f0; border-right: 4px solid #556b2f; display: flex; gap: 14px; align-items: flex-start; }
+.objective-num { width: 26px; height: 26px; border-radius: 50%; background: linear-gradient(135deg,#556b2f,#3a4728); color: white; font-weight: 700; font-size: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+.objective-body { flex: 1; }
+.objective-head { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; flex-wrap: wrap; }
+.objective-title { font-size: 14px; font-weight: 700; color: #1a1a1a; }
+.objective-text { font-size: 12.5px; color: #475569; line-height: 1.7; }
+
+.idea-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+.idea-card { padding: 16px; border-radius: 10px; background: #f8f7f0; border-right: 4px solid #e09400; }
+.idea-num { display: inline-flex; width: 22px; height: 22px; border-radius: 50%; background: #e09400; color: white; font-size: 11px; font-weight: 700; align-items: center; justify-content: center; margin-left: 6px; flex-shrink: 0; }
+.idea-title { font-size: 13px; font-weight: 700; color: #7c5a05; margin-bottom: 6px; display: flex; align-items: center; }
+.idea-text { font-size: 12px; color: #475569; line-height: 1.7; }
+
+/* Roadmap */
+.month-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
+@media (min-width: 800px) { .month-grid { grid-template-columns: repeat(3, 1fr); } }
+.month-card { border-radius: 12px; overflow: hidden; border: 1px solid #e7e5d6; background: #fff; }
+.month-top { padding: 14px 16px; color: white; }
+.month-card.m1 .month-top { background: linear-gradient(135deg, #3a4728, #556b2f); }
+.month-card.m2 .month-top { background: linear-gradient(135deg, #b87600, #e09400); }
+.month-card.m3 .month-top { background: linear-gradient(135deg, #1f2616, #3a4728); }
+.month-name { font-size: 12px; opacity: 0.8; font-weight: 600; }
+.month-theme { font-size: 16px; font-weight: 800; margin-top: 2px; }
+.month-budget { font-size: 12px; margin-top: 6px; background: rgba(255,255,255,0.16); display: inline-block; padding: 3px 10px; border-radius: 12px; font-weight: 700; }
+.month-body { padding: 14px 16px; }
+.month-body .mini-label { color: #3a4728; margin-top: 4px; }
+.month-body ul { margin-right: 16px; margin-bottom: 10px; }
+.month-body li { font-size: 12px; color: #475569; margin-bottom: 4px; line-height: 1.65; }
+.gate { font-size: 11.5px; background: #f8f7f0; border-radius: 8px; padding: 8px 10px; color: #3a4728; border-right: 3px solid #e09400; }
+
+.kw-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; }
+.kw-card { padding: 14px; border-radius: 10px; background: #f8f7f0; border: 1px solid #e7e5d6; }
+.kw-title { font-size: 12.5px; font-weight: 700; color: #3a4728; margin-bottom: 8px; }
+.kw-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.kw-tag { font-size: 11px; background: white; border: 1px solid #d9d6c3; border-radius: 12px; padding: 2px 9px; color: #334155; }
+.kw-card.neg { background: #fff5f5; border-color: #fecaca; }
+.kw-card.neg .kw-title { color: #991b1b; }
+.kw-card.neg .kw-tag { border-color: #fecaca; }
+
+@media (min-width: 600px) {
+    .header .brand { font-size: 40px; }
+    .header h1 { font-size: 20px; }
+    .metric-value { font-size: 24px; }
+    .section { padding: 28px 24px; }
+    .section-title { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+    <!-- HEADER -->
+    <div class="header">
+        <div class="brand">الدهمشي <span>للخياطة العسكرية</span></div>
+        <h1>تحليل النشاط · تحليل SWOT · تحليل المنافسين · الخطة الإعلانية</h1>
+        <div class="accent-bar"></div>
+        <div class="platform-badge">🎖️ Google Ads · Instagram</div>
+    </div>
+
+    <!-- ======================== -->
+    <!-- BUSINESS SNAPSHOT -->
+    <!-- ======================== -->
+    <div class="section" style="border-top: 4px solid #556b2f;">
+        <h2 class="section-title">🔎 نظرة عامة على النشاط</h2>
+
+        <div class="metrics-grid">
+            <div class="metric-card olive">
+                <div class="metric-label">المنصة</div>
+                <div class="metric-value">سلة</div>
+                <div class="metric-sub">Salla</div>
+            </div>
+            <div class="metric-card dark">
+                <div class="metric-label">الحملات الإعلانية السابقة</div>
+                <div class="metric-value">Google فقط</div>
+                <div class="metric-sub">حساب وبيكسل Meta جديدان</div>
+            </div>
+            <div class="metric-card gold">
+                <div class="metric-label">الفروع الفعلية</div>
+                <div class="metric-value">2 — الرياض</div>
+                <div class="metric-sub">السلي · الندوة</div>
+            </div>
+            <div class="metric-card muted">
+                <div class="metric-label">ضمان البساطير</div>
+                <div class="metric-value">90 يوماً</div>
+                <div class="metric-sub">يُفعَّل عبر الواتساب</div>
+            </div>
+        </div>
+
+        <div class="pillar-grid">
+            <div class="pillar-card">
+                <div class="pillar-title">🧵 طبيعة النشاط</div>
+                <div class="pillar-text">خياطة وتجهيزات عسكرية بخبرة متراكمة، تجمع بين بيع المنتجات الجاهزة وخدمة <b>التفصيل</b> و<b>الطلبات الخاصة</b> — وهو ما يميّزها عن متاجر إعادة البيع فقط.</div>
+            </div>
+            <div class="pillar-card">
+                <div class="pillar-title">🎖️ الأقسام الرئيسية</div>
+                <div class="pillar-text">ونقات وشعارات (تطريز، طباعة، حديد، مخمل، ليزر، ربل، حفر)، رتب الأفراد، السبلايت، البريهات (ومنها «بريهات الدهمشي»)، البساطير، بدل وقبوع التشريفات، لوحات الأسماء وفصائل الدم، العواكس، الفنايل، الأقمشة، قسم الشتاء.</div>
+            </div>
+            <div class="pillar-card">
+                <div class="pillar-title">👥 الجمهور المستهدف</div>
+                <div class="pillar-text">منسوبو القطاعات العسكرية والأمنية (أفراد وضباط)، المستجدّون في الدورات العسكرية، ذوو العسكريين (هدايا الترقيات والتخرج)، أولياء الأمور (بدل الأطفال)، والجهات التي تطلب كميات.</div>
+            </div>
+            <div class="pillar-card">
+                <div class="pillar-title">📍 الموقع والخدمة</div>
+                <div class="pillar-text">فرع السلي (شارع أبو عبيدة بن الجراح، قبل بوابة الحرس الوطني رقم 2) وفرع الندوة (شارع دار الحكيم)، مع شحن لجميع مناطق المملكة وخدمة عملاء عبر الواتساب.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======================== -->
+    <!-- SWOT -->
+    <!-- ======================== -->
+    <div class="section" style="border-top: 4px solid #1f2616;">
+        <h2 class="section-title" style="border-color:#1f2616;">🧭 تحليل SWOT</h2>
+        <div class="section-sub">نقاط القوة والضعف (داخلية) — الفرص والتهديدات (خارجية)</div>
+
+        <div class="swot-grid">
+            <div class="swot-card s">
+                <div class="swot-head"><div class="swot-letter">S</div><div class="swot-title">نقاط القوة</div></div>
+                <ul class="swot-list">
+                    <li><b>ورشة خياطة حقيقية وخدمة تفصيل</b> — ميزة لا يبرزها أيٌّ من المنافسين الثلاثة على واجهة متجره.</li>
+                    <li><b>فرعان فعليان في الرياض</b>، أحدهما ملاصق لبوابة الحرس الوطني؛ ما يمنح ثقة ويتيح الاستلام والمعاينة.</li>
+                    <li><b>عمق التشكيلة في الونقات والشعارات</b> بسبع تقنيات تصنيع، إضافة إلى لوحات الأسماء وفصائل الدم.</li>
+                    <li><b>منتج بعلامة خاصة</b> (بريهات الدهمشي) يصعب مقارنته سعرياً بالمنافسين.</li>
+                    <li><b>ضمان 90 يوماً على البساطير</b> وسياسة استبدال واضحة.</li>
+                    <li>تغطية فئات متخصصة: بدل وقبوع التشريفات، مستلزمات الدورات، بدل الأطفال، الطلبات الخاصة.</li>
+                </ul>
+            </div>
+            <div class="swot-card w">
+                <div class="swot-head"><div class="swot-letter">W</div><div class="swot-title">نقاط الضعف</div></div>
+                <ul class="swot-list">
+                    <li><b>لا توجد حملات إعلانية سابقة على Meta/Instagram</b> — لا توجد بيانات أداء تاريخية يُبنى عليها الاستهداف أو توزيع الميزانية على هذه المنصة.</li>
+                    <li><b>حساب إعلاني جديد على Meta</b> يحتاج إلى فترة تعلّم قبل أن تستقر تكلفة النتيجة.</li>
+                    <li><b>بيكسل Meta جديد</b> يحتاج إلى وقت لتجميع بيانات تحويل كافية تُغذّي بها الخوارزمية، لذا تكون تكلفة الطلب في البداية أعلى من المستهدف طويل المدى.</li>
+                    <li>قلة التقييمات المعروضة من عملاء حقيقيين على المتجر.</li>
+                    <li><b>غياب وصف المنتجات</b>، ما يُضعف قرار الشراء ويقلل فرص الظهور في نتائج البحث.</li>
+                    <li><b>عدم توفر التقسيط عبر تمارا</b>، في حين يقدّمه المنافسون.</li>
+                    <li><b>لا توجد عروض أو إبراز لأي ميزة تنافسية</b>، سواء في البانرات أو في شريط إعلاني أعلى المتجر.</li>
+                    <li><b>لا يوجد شحن مجاني</b>.</li>
+                    <li><b>لا يوجد بيع متقاطع (Cross-selling)</b> في صفحات المنتجات، ما يحدّ من رفع متوسط قيمة الطلب.</li>
+                </ul>
+            </div>
+            <div class="swot-card o">
+                <div class="swot-head"><div class="swot-letter">O</div><div class="swot-title">الفرص</div></div>
+                <ul class="swot-list">
+                    <li><b>موسم الشتاء</b> يتزامن مع انطلاق الخطة (الجاكيتات، البالطوهات، الفنايل الحرارية) — والقسم موجود بالفعل.</li>
+                    <li><b>البحث المحلي</b> («خياط عسكري الرياض»، «تفصيل بدلة عسكرية») يمكن التقاطه عبر Google وملف النشاط التجاري للفرعين.</li>
+                    <li><b>التخصيص</b> (لوحات الأسماء، الونقات المطرزة حسب الطلب) فئة ذات هامش أعلى ومنافسة سعرية أقل.</li>
+                    <li><b>طلبات الجهات والكميات</b> عبر قسم الطلبات الخاصة.</li>
+                </ul>
+            </div>
+            <div class="swot-card t">
+                <div class="swot-head"><div class="swot-letter">T</div><div class="swot-title">التهديدات</div></div>
+                <ul class="swot-list">
+                    <li><b>منافسة سعرية حادة</b>: خصومات تتراوح بين 10% و48% لدى سكود، وتصل إلى 73% على بعض البساطير.</li>
+                    <li><b>منافسون أقدم وأكثر ثقة رقمياً</b>: العميد يعمل منذ 2020 ويقدّم نفسه بوصفه «المتجر السعودي الأول».</li>
+                    <li>المنافسون يقدّمون التقسيط (تابي، تمارا، إمكان) ووعود توصيل خلال 24–48 ساعة.</li>
+                    <li><b>سياسات المنصات الإعلانية</b> تجاه ملحقات الأسلحة (مثل بيوت المسدس) قد تؤدي لرفض الإعلانات أو تقييد الحساب.</li>
+                    <li>تركّز جزء كبير من الطلب في الرياض، وموسمية بعض الفئات.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======================== -->
+    <!-- CLIENT STORES COMPARISON -->
+    <!-- ======================== -->
+    <div class="section" style="border-top: 4px solid #556b2f;">
+        <h2 class="section-title">🏬 مقارنة بين متجري العميل: الدهمشي وارمي</h2>
+        <div class="section-sub">متجر «ارمي للتجهيزات العسكرية» يعمل تحت إشراف الدهمشي للخياطة العسكرية وفق ما يظهر في تذييل الموقع</div>
+
+        <div class="table-wrap">
+        <table class="cmp-table" style="min-width:560px;">
+            <thead>
+                <tr>
+                    <th>المعيار</th>
+                    <th class="us">الدهمشي — al-dahmashi.com</th>
+                    <th class="us">ارمي — armyksa.com</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>المنصة</td><td class="us">سلة</td><td class="us">سلة</td></tr>
+                <tr><td>التموضع</td><td class="us">خبرة الخياطة والتجهيزات العسكرية</td><td class="us">«صنع للميدان» — تجهيزات عسكرية وتكتيكية</td></tr>
+                <tr><td>التركيز في التشكيلة</td><td class="us">ونقات وشعارات، رتب، بريهات، تشريفات، لوحات أسماء، تفصيل</td><td class="us">بساطير، بدل، سترات تكتيكية، أقمشة، تفصيل، بريهات</td></tr>
+                <tr><td>الحملات الإعلانية</td><td class="us">Google: حملات سابقة · <span class="badge badge-red">Meta: لا توجد</span></td><td class="us"><span class="badge badge-green">حملات منذ فترة طويلة</span></td></tr>
+                <tr><td>وسائل الدفع</td><td class="us">Apple Pay، مدى، Visa/Mastercard، STC Bank، تابي</td><td class="us">Apple Pay، مدى، Visa/Mastercard، STC Bank، تابي، <b>تمارا</b></td></tr>
+                <tr><td>شركات الشحن وأسعارها</td><td class="us">ريدبوكس 13 ر.س · أرامكس 24 ر.س (1–2 يوم عمل) · أي مكان 24 ر.س (1–4 أيام) · iMile 24 ر.س (1–3 أيام عمل)</td><td class="us">ريدبوكس 13 ر.س · <b>سمسا 14 ر.س</b> (1–3 أيام) · أرامكس 25 ر.س (1–5 أيام عمل) · أي مكان 25 ر.س (1–5 أيام) · iMile 25 ر.س (1–3 أيام عمل)</td></tr>
+                <tr><td>الشحن المجاني</td><td class="us"><span class="badge badge-red">غير متوفر</span></td><td class="us"><span class="badge badge-green">متوفر على بعض المنتجات</span></td></tr>
+                <tr><td>الاستلام من الفرع</td><td class="us">متاح</td><td class="us">متاح</td></tr>
+                <tr><td>وصف المنتجات</td><td class="us"><span class="badge badge-red">غير متوفر</span></td><td class="us"><span class="badge badge-green">متوفر</span></td></tr>
+                <tr><td>البيع المتقاطع (Cross-selling)</td><td class="us"><span class="badge badge-red">غير متوفر</span></td><td class="us"><span class="badge badge-green">في صفحة المنتج وصفحة السلة</span></td></tr>
+                <tr><td>الضمان</td><td class="us">90 يوماً على البساطير بشروط واضحة</td><td class="us">عنوان «ضمان وجودة» دون شروط</td></tr>
+                <tr><td>العروض</td><td class="us">قسم «التوفير» دون إبراز</td><td class="us">صفحة تخفيضات مرتبطة بالبانرات</td></tr>
+            </tbody>
+        </table>
+        </div>
+    </div>
+
+    <!-- ======================== -->
+    <!-- COMPETITOR ANALYSIS -->
+    <!-- ======================== -->
+    <div class="section" style="border-top: 4px solid #e09400;">
+        <h2 class="section-title" style="border-color:#e09400;">⚔️ تحليل المنافسين</h2>
+        <div class="section-sub">مقارنة مبنية على ما يظهر في المتاجر الإلكترونية للمنافسين — أكتوبر 2026</div>
+
+        <div class="table-wrap">
+        <table class="cmp-table">
+            <thead>
+                <tr>
+                    <th>المعيار</th>
+                    <th class="us">الدهمشي</th>
+                    <th>زي العميد</th>
+                    <th>سكود SCUD</th>
+                    <th>نخبة النخبة</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>المنصة</td>
+                    <td class="us">سلة</td>
+                    <td>سلة</td>
+                    <td>زد</td>
+                    <td>سلة</td>
+                </tr>
+                <tr>
+                    <td>التموضع</td>
+                    <td class="us">خبرة الخياطة والتجهيزات العسكرية</td>
+                    <td>«المتجر السعودي الأول» ورواد الخياطة العسكرية</td>
+                    <td>«قوة تجهّزك» — تجهيزات ميدانية وتكتيكية</td>
+                    <td>«أداء لا يُساوم» — تكتيكي واحترافي</td>
+                </tr>
+                <tr>
+                    <td>التركيز في التشكيلة</td>
+                    <td class="us">ونقات وشعارات، بريهات، تشريفات، تفصيل</td>
+                    <td>أقمشة، بساطير، ونقات، شتاء، أغطية رأس، تكتيكي</td>
+                    <td>بساطير، جاكيتات، فنايل، ونقات وشعارات</td>
+                    <td>بساطير (حسب اللون)، أقمشة، معدات حماية</td>
+                </tr>
+                <tr>
+                    <td>سياسة الخصومات</td>
+                    <td class="us">قسم «التوفير»</td>
+                    <td>أقمشة تبدأ من 196 ر.س وبساطير من 59 ر.س، مع خصومات تصل إلى 40%</td>
+                    <td>خصومات مرتفعة ودائمة (10% – 48%)</td>
+                    <td>قسم «عروض النخبة»</td>
+                </tr>
+                <tr>
+                    <td>وعد التوصيل</td>
+                    <td class="us">«توصيل سريع» دون مدة محددة</td>
+                    <td>«شحن سريع» لجميع المناطق</td>
+                    <td>صفحة سياسة شحن مستقلة</td>
+                    <td>24–48 ساعة للمدن الرئيسية، وحتى 4 أيام لبقية المناطق</td>
+                </tr>
+                <tr>
+                    <td>الفروع الفعلية</td>
+                    <td class="us"><span class="badge badge-green">فرعان في الرياض</span></td>
+                    <td>غير مذكورة على الموقع</td>
+                    <td>غير مذكورة على الموقع</td>
+                    <td>غير مذكورة على الموقع</td>
+                </tr>
+                <tr>
+                    <td>عناصر الثقة</td>
+                    <td class="us">ضمان 90 يوماً · فروع · واتساب</td>
+                    <td>رقم ضريبي</td>
+                    <td>توثيق المركز السعودي للأعمال · «الضمان الذهبي» · تقييمات عملاء</td>
+                    <td>تصريح بمطابقة المواصفات العسكرية · رقم تتبع</td>
+                </tr>
+                <tr>
+                    <td>المحتوى وSEO</td>
+                    <td class="us">ضعيف (محتوى قالب)</td>
+                    <td>قوي (كلمات مفتاحية في العناوين والوصف)</td>
+                    <td>جيد (مدونة + أسئلة شائعة)</td>
+                    <td>متوسط</td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+
+        <div class="comp-grid">
+            <div class="platform-card">
+                <div class="platform-card-title">زي العميد <span class="badge badge-red">المنافس الأقدم</span></div>
+                <div class="platform-card-url">alameedmilitary.com</div>
+                <div class="mini-label plus">✔ ما يتقنه</div>
+                <ul class="mini-list">
+                    <li>أقدمية رقمية منذ 2020 وتهيئة جيدة لمحركات البحث</li>
+                    <li>واجهة بصرية منظمة حسب الأقسام (أقمشة، بساطير، شتاء، تكتيكي)</li>
+                </ul>
+            </div>
+            <div class="platform-card">
+                <div class="platform-card-title">سكود SCUD <span class="badge badge-red">الأقوى سعرياً</span></div>
+                <div class="platform-card-url">scudshop.com</div>
+                <div class="mini-label plus">✔ ما يتقنه</div>
+                <ul class="mini-list">
+                    <li>أسعار ظاهرة وخصومات واضحة، وتقسيط عبر ثلاث جهات</li>
+                    <li>حضور على ثلاث منصات اجتماعية وتوثيق رسمي</li>
+                </ul>
+            </div>
+            <div class="platform-card">
+                <div class="platform-card-title">نخبة النخبة <span class="badge badge-olive">تكتيكي متخصص</span></div>
+                <div class="platform-card-url">nkhbt-alnkhbh.com</div>
+                <div class="mini-label plus">✔ ما يتقنه</div>
+                <ul class="mini-list">
+                    <li>رسالة احترافية واضحة ووعد توصيل محدد بالساعات</li>
+                    <li>تصريح بمطابقة مواصفات القطاعات العسكرية</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======================== -->
+    <!-- OBJECTIVES -->
+    <!-- ======================== -->
+    <div class="section" style="border-top: 4px solid #556b2f;">
+        <h2 class="section-title">🎯 أهداف الخطة عبر قمع التسويق</h2>
+        <div class="section-sub">البداية بـ Google Ads (التقاط الطلب الموجود) وInstagram (بناء الطلب والثقة)</div>
+        <div class="objective-list">
+            <div class="objective-item">
+                <div class="objective-num">1</div>
+                <div class="objective-body">
+                    <div class="objective-head"><span class="objective-title">التحويل والمبيعات</span><span class="badge badge-olive">BOFU</span></div>
+                    <div class="objective-text">التقاط الباحثين على Google بنية شراء واضحة (بسطار عسكري، ونقات، رتب، لوحات أسماء)، وتحويلهم إلى طلبات فعلية عبر المتجر.</div>
+                </div>
+            </div>
+            <div class="objective-item">
+                <div class="objective-num">2</div>
+                <div class="objective-body">
+                    <div class="objective-head"><span class="objective-title">زيارات الفروع والتفصيل</span><span class="badge badge-olive">Local</span></div>
+                    <div class="objective-text">توجيه الباحثين محلياً في الرياض إلى فرعي السلي والندوة وإلى استفسارات التفصيل عبر الواتساب والاتصال.</div>
+                </div>
+            </div>
+            <div class="objective-item">
+                <div class="objective-num">3</div>
+                <div class="objective-body">
+                    <div class="objective-head"><span class="objective-title">بناء الثقة بالعلامة</span><span class="badge badge-olive">MOFU</span></div>
+                    <div class="objective-text">إبراز الحرفية والورشة والضمان عبر محتوى Instagram، لتعويض حداثة الحساب على Meta وقلة التقييمات.</div>
+                </div>
+            </div>
+            <div class="objective-item">
+                <div class="objective-num">4</div>
+                <div class="objective-body">
+                    <div class="objective-head"><span class="objective-title">نمو الجمهور وإعادة الشراء</span><span class="badge badge-olive">Retention</span></div>
+                    <div class="objective-text">بناء قاعدة متابعين وجماهير إعادة استهداف تخدم الطلب المتكرر (الترقيات، الدورات، موسم الشتاء).</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======================== -->
+    <!-- STARTING POINT -->
+    <!-- ======================== -->
+    <div class="section" style="border-top: 4px solid #e53935;">
+        <h2 class="section-title" style="border-color:#e53935;">🔴 نقطة البداية والتحديات الحالية</h2>
+
+        <div class="insight-box critical">
+            <div class="insight-title">🔴 حساب إعلاني وبيكسل جديدان على Meta</div>
+            <div class="insight-text">لا يوجد سجل أداء أو بيانات تحويل سابقة على Meta/Instagram، بينما يملك حساب Google سجلاً من حملات سابقة يمكن البناء عليه. الفترة الأولى على Instagram مخصصة لبناء بيانات تحويل نظيفة وتجاوز مرحلة التعلّم، وليست لقياس نتائج نهائية.</div>
+            <ul class="action-list">
+                <li>تكلفة الطلب على Instagram في البداية أعلى نسبياً من المستهدف طويل المدى، وهذا سلوك طبيعي لأي حساب جديد.</li>
+            </ul>
+        </div>
+
+        <div class="insight-box critical">
+            <div class="insight-title">🔴 عناصر في المتجر تحتاج معالجة قبل الإطلاق</div>
+            <div class="insight-text">أي نقرة مدفوعة تصل إلى صفحة منتج دون وصف أو عرض واضح ترفع تكلفة التحويل. المطلوب قبل تشغيل الإعلانات:</div>
+            <ul class="action-list">
+                <li>توفير وصف للمنتجات</li>
+                <li>إبراز الميزات التنافسية</li>
+                <li>توفير بانرات برسالة تسويقية واضحة</li>
+                <li>تفعيل البيع المتقاطع (Cross-selling)</li>
+                <li>إضافة التقسيط عبر تمارا</li>
+                <li>توفير شحن مجاني للطلبات التي تتجاوز قيمة محددة</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ======================== -->
+    <!-- BUDGET ALLOCATION -->
+    <!-- ======================== -->
+    <div class="section" style="border-top: 4px solid #e09400;">
+        <h2 class="section-title" style="border-color:#e09400;">💰 توزيع الميزانية الإعلانية اليومية</h2>
+        <div class="section-sub">رفع تدريجي مشروط بالعائد على الإنفاق — Google يبدأ بميزانية أعلى لوجود سجل حملات سابق</div>
+
+        <div class="metrics-grid">
+            <div class="metric-card olive">
+                <div class="metric-label">الشهر الأول</div>
+                <div class="metric-value">220 – 250 ر.س/يوم</div>
+                <div class="metric-sub">Google 150 · Instagram 70–100</div>
+            </div>
+            <div class="metric-card gold">
+                <div class="metric-label">الشهر الثاني</div>
+                <div class="metric-value">300 – 400 ر.س/يوم</div>
+                <div class="metric-sub">Google 150–200 · Instagram 150–200</div>
+            </div>
+            <div class="metric-card dark">
+                <div class="metric-label">الشهر الثالث وما بعده</div>
+                <div class="metric-value">+400 ر.س/يوم</div>
+                <div class="metric-sub">حسب العائد على الإنفاق</div>
+            </div>
+        </div>
+
+        <div class="table-wrap">
+        <table class="cmp-table" style="min-width:560px;">
+            <thead>
+                <tr><th>المنصة (ر.س يومياً)</th><th>الشهر الأول</th><th>الشهر الثاني</th><th>الشهر الثالث وما بعده</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Google Ads</td><td>150</td><td>150 – 200</td><td>أكثر من 200</td></tr>
+                <tr><td>Instagram</td><td>70 – 100</td><td>150 – 200</td><td>أكثر من 200</td></tr>
+                <tr class="grand-total"><td>الإجمالي اليومي</td><td>220 – 250</td><td>300 – 400</td><td>أكثر من 400</td></tr>
+            </tbody>
+        </table>
+        </div>
+    </div>
+
+    <!-- ======================== -->
+    <!-- 3-MONTH ROADMAP -->
+    <!-- ======================== -->
+    <div class="section" style="border-top: 4px solid #1f2616;">
+        <h2 class="section-title" style="border-color:#1f2616;">🗓️ مراحل الخطة الإعلانية</h2>
+        <div class="section-sub">كل مرحلة لها هدف واضح وشرط للانتقال إلى المرحلة التالية</div>
+
+        <div class="month-grid">
+            <div class="month-card m1">
+                <div class="month-top">
+                    <div class="month-name">الشهر الأول</div>
+                    <div class="month-theme">الانطلاق</div>
+                    <div class="month-budget">220 – 250 ر.س/يوم</div>
+                </div>
+                <div class="month-body">
+                    <div class="mini-label">Google Ads</div>
+                    <ul>
+                        <li>البناء على بيانات الحملات السابقة وتوجيه الإنفاق نحو الأقسام الأعلى طلباً</li>
+                        <li>مراجعة التتبع والتأكد من مطابقة التحويلات لأرقام سلة</li>
+                    </ul>
+                    <div class="mini-label">Instagram</div>
+                    <ul>
+                        <li>تثبيت Meta Pixel وConversions API من سلة</li>
+                        <li>إطلاق حملات المبيعات بمحتوى Reels وتجميع بيانات التحويل</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="month-card m2">
+                <div class="month-top">
+                    <div class="month-name">الشهر الثاني</div>
+                    <div class="month-theme">التحسين والتوسع</div>
+                    <div class="month-budget">300 – 400 ر.س/يوم</div>
+                </div>
+                <div class="month-body">
+                    <div class="mini-label">Google Ads</div>
+                    <ul>
+                        <li>تنظيف مصطلحات البحث وإضافة الكلمات السلبية أسبوعياً</li>
+                        <li>إيقاف ما ينفق دون تحويل، وتحويل الميزانية نحو الأعلى عائداً</li>
+                    </ul>
+                    <div class="mini-label">Instagram</div>
+                    <ul>
+                        <li>تشغيل إعادة الاستهداف وإعلانات الكتالوج</li>
+                        <li>دفع تشكيلة الشتاء في ذروة البرد</li>
+                    </ul>
+                    <div class="gate">🔓 شرط الانتقال: عائد على الإنفاق (ROAS) ثابت أو متحسن لأسبوعين متتاليين.</div>
+                </div>
+            </div>
+
+            <div class="month-card m3">
+                <div class="month-top">
+                    <div class="month-name">الشهر الثالث وما بعده</div>
+                    <div class="month-theme">التوسع المدروس</div>
+                    <div class="month-budget">+400 ر.س/يوم</div>
+                </div>
+                <div class="month-body">
+                    <div class="mini-label">Google Ads</div>
+                    <ul>
+                        <li>رفع الميزانية على الأقسام الأعلى عائداً</li>
+                    </ul>
+                    <div class="mini-label">Instagram</div>
+                    <ul>
+                        <li>جمهور مشابه (Lookalike) من قائمة المشترين</li>
+                        <li>رسائل واتساب لخدمة التفصيل والطلبات الخاصة</li>
+                    </ul>
+                    <div class="gate">📊 يستمر الرفع ما دام العائد على الإنفاق محافظاً على مستواه.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======================== -->
+    <!-- GOOGLE KEYWORDS -->
+    <!-- ======================== -->
+    <div class="section" style="border-top: 4px solid #1565c0;">
+        <h2 class="section-title" style="border-color:#1565c0;">🔍 هيكل كلمات البحث على Google</h2>
+        <div class="section-sub">مجموعات إعلانية حسب القسم — مطابقة عبارة ومطابقة تامة في البداية للتحكم في الإنفاق</div>
+        <div class="kw-grid">
+            <div class="kw-card">
+                <div class="kw-title">🥾 البساطير</div>
+                <div class="kw-tags"><span class="kw-tag">بسطار عسكري</span><span class="kw-tag">بساطير عسكرية</span><span class="kw-tag">بسطار تكتيكي</span><span class="kw-tag">بسطار صحراوي</span></div>
+            </div>
+            <div class="kw-card">
+                <div class="kw-title">🎖️ الونقات والشعارات</div>
+                <div class="kw-tags"><span class="kw-tag">ونقات عسكرية</span><span class="kw-tag">ونق مظلي</span><span class="kw-tag">شعارات عسكرية</span><span class="kw-tag">ونقات تطريز</span></div>
+            </div>
+            <div class="kw-card">
+                <div class="kw-title">⭐ الرتب والسبلايت</div>
+                <div class="kw-tags"><span class="kw-tag">رتب عسكرية</span><span class="kw-tag">رتب أفراد</span><span class="kw-tag">سبلايت عسكري</span></div>
+            </div>
+            <div class="kw-card">
+                <div class="kw-title">🪖 البريهات والقبوع</div>
+                <div class="kw-tags"><span class="kw-tag">بريهة عسكرية</span><span class="kw-tag">بريهات كوماندوز</span><span class="kw-tag">قبع تشريفات</span></div>
+            </div>
+            <div class="kw-card">
+                <div class="kw-title">🏷️ التخصيص</div>
+                <div class="kw-tags"><span class="kw-tag">لوحة اسم عسكرية</span><span class="kw-tag">ونقة فصيلة دم</span><span class="kw-tag">تطريز اسم عسكري</span></div>
+            </div>
+            <div class="kw-card">
+                <div class="kw-title">📍 محلي — الرياض</div>
+                <div class="kw-tags"><span class="kw-tag">خياط عسكري الرياض</span><span class="kw-tag">خياطة عسكرية قريب مني</span><span class="kw-tag">تفصيل بدلة عسكرية</span><span class="kw-tag">بدلة تشريفات</span></div>
+            </div>
+            <div class="kw-card neg">
+                <div class="kw-title">⛔ كلمات سلبية مبدئية</div>
+                <div class="kw-tags"><span class="kw-tag">وظائف</span><span class="kw-tag">تقديم</span><span class="kw-tag">نتائج القبول</span><span class="kw-tag">رسم</span><span class="kw-tag">صور</span><span class="kw-tag">ألعاب</span><span class="kw-tag">مسدس</span><span class="kw-tag">سلاح</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======================== -->
+    <!-- INSTAGRAM CONTENT -->
+    <!-- ======================== -->
+    <div class="section" style="border-top: 4px solid #556b2f;">
+        <h2 class="section-title">🎬 المحتوى الإعلاني على Instagram</h2>
+        <div class="section-sub">التركيز على Reels التي تُظهر الحرفية والورشة — وهي الزاوية التي لا يغطيها المنافسون</div>
+        <div class="pillar-grid">
+            <div class="pillar-card">
+                <div class="pillar-title">🧵 داخل الورشة</div>
+                <div class="pillar-text">مراحل تفصيل البدلة من القص حتى التسليم — تُثبت أن الدهمشي خيّاط وليس مجرد بائع.</div>
+            </div>
+            <div class="pillar-card">
+                <div class="pillar-title">🎖️ تطريز الونقة عن قرب</div>
+                <div class="pillar-text">لقطات مقرّبة لماكينة التطريز ومقارنة بين التقنيات (تطريز، حديد، ربل، ليزر).</div>
+            </div>
+            <div class="pillar-card">
+                <div class="pillar-title">🥾 البسطار + ضمان 90 يوماً</div>
+                <div class="pillar-text">عرض تفاصيل البسطار (النعل، السحاب، الخياطة) مع إبراز الضمان بوصفه ميزة تنافسية.</div>
+            </div>
+            <div class="pillar-card">
+                <div class="pillar-title">🎒 جهّز دورتك</div>
+                <div class="pillar-text">محتوى يجمع كل مستلزمات الدورة في طلب واحد — يخدم شريحة المستجدّين ويرفع متوسط قيمة الطلب.</div>
+            </div>
+            <div class="pillar-card">
+                <div class="pillar-title">🏪 جولة في الفرع</div>
+                <div class="pillar-text">التعريف بفرعي السلي والندوة وطريقة الوصول — يخدم هدف زيارات الفروع.</div>
+            </div>
+            <div class="pillar-card">
+                <div class="pillar-title">🧥 تشكيلة الشتاء</div>
+                <div class="pillar-text">الجاكيتات والفنايل الحرارية في ذروة الموسم، مع ربطها بأجواء المناوبات الميدانية.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======================== -->
+    <!-- OFFERS & RETARGETING -->
+    <!-- ======================== -->
+    <div class="section" style="border-top: 4px solid #0891b2;">
+        <h2 class="section-title" style="border-color:#0891b2;">🎁 أفكار العروض وإعادة الاستهداف</h2>
+
+        <div class="section-sub" style="margin-bottom:10px;">أفكار العروض — قائمة على القيمة لا على الخصم العميق</div>
+        <div class="idea-grid" style="margin-bottom:22px;">
+            <div class="idea-card" style="border-color:#556b2f;">
+                <div class="idea-title" style="color:#3a4728;"><span class="idea-num" style="background:#556b2f;">1</span>باقة الدورة</div>
+                <div class="idea-text">مستلزمات الدورة كاملة بسعر باقة أقل من مجموع القطع.</div>
+            </div>
+            <div class="idea-card" style="border-color:#556b2f;">
+                <div class="idea-title" style="color:#3a4728;"><span class="idea-num" style="background:#556b2f;">2</span>تطريز الاسم مجاناً</div>
+                <div class="idea-text">عند شراء بدلة أو جاكيت — ميزة لا يستطيع المنافس السعري مجاراتها بسهولة.</div>
+            </div>
+            <div class="idea-card" style="border-color:#556b2f;">
+                <div class="idea-title" style="color:#3a4728;"><span class="idea-num" style="background:#556b2f;">3</span>شحن مجاني بحد أدنى للطلب</div>
+                <div class="idea-text">يرفع قيمة السلة، خاصة مع القطع منخفضة السعر كالونقات والرتب.</div>
+            </div>
+            <div class="idea-card" style="border-color:#556b2f;">
+                <div class="idea-title" style="color:#3a4728;"><span class="idea-num" style="background:#556b2f;">4</span>عرض الشتاء</div>
+                <div class="idea-text">جاكيت + فنيلة حرارية بسعر مخفض لفترة محدودة.</div>
+            </div>
+            <div class="idea-card" style="border-color:#556b2f;">
+                <div class="idea-title" style="color:#3a4728;"><span class="idea-num" style="background:#556b2f;">5</span>خصم الطلب الأول أونلاين</div>
+                <div class="idea-text">لعملاء الفرعين تحديداً، لتحفيز أول تجربة شراء عبر المتجر.</div>
+            </div>
+        </div>
+
+        <div class="section-sub" style="margin-bottom:10px;">أفكار إعادة الاستهداف (Retargeting)</div>
+        <div class="idea-grid">
+            <div class="idea-card" style="border-color:#0891b2;">
+                <div class="idea-title" style="color:#0e7490;"><span class="idea-num" style="background:#0891b2;">1</span>زوار الأقسام دون شراء</div>
+                <div class="idea-text">إعلانات كتالوج تعرض المنتجات نفسها التي تصفّحها الزائر.</div>
+            </div>
+            <div class="idea-card" style="border-color:#0891b2;">
+                <div class="idea-title" style="color:#0e7490;"><span class="idea-num" style="background:#0891b2;">2</span>السلات المتروكة</div>
+                <div class="idea-text">تذكير مع إبراز الضمان والاستلام من الفرع بدلاً من الخصم المباشر.</div>
+            </div>
+            <div class="idea-card" style="border-color:#0891b2;">
+                <div class="idea-title" style="color:#0e7490;"><span class="idea-num" style="background:#0891b2;">3</span>مشترو الرتب السابقون</div>
+                <div class="idea-text">إعادة استهداف دورية للتذكير بالرتب الجديدة عند الترقيات.</div>
+            </div>
+            <div class="idea-card" style="border-color:#0891b2;">
+                <div class="idea-title" style="color:#0e7490;"><span class="idea-num" style="background:#0891b2;">4</span>متفاعلو Instagram</div>
+                <div class="idea-text">من شاهد Reels الورشة أو زار البروفايل، بإعلان تحويل مباشر للمتجر.</div>
+            </div>
+            <div class="idea-card" style="border-color:#0891b2;">
+                <div class="idea-title" style="color:#0e7490;"><span class="idea-num" style="background:#0891b2;">5</span>مستفسرو الواتساب</div>
+                <div class="idea-text">متابعة من استفسر عن التفصيل ولم يكمل، برابط مباشر للطلب أو موقع الفرع.</div>
+            </div>
+            <div class="idea-card" style="border-color:#0891b2;">
+                <div class="idea-title" style="color:#0e7490;"><span class="idea-num" style="background:#0891b2;">6</span>جمهور مشابه (Lookalike)</div>
+                <div class="idea-text">يُبنى من قائمة المشترين فور توفر عدد كافٍ من الطلبات.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======================== -->
+    <!-- KPIs -->
+    <!-- ======================== -->
+    <div class="section" style="border-top: 4px solid #1b5e20;">
+        <h2 class="section-title" style="border-color:#1b5e20;">📊 مؤشرات الأداء الرئيسية (KPIs)</h2>
+        <div class="section-sub">تُحدَّد القيم المستهدفة بنهاية الشهر الأول بناءً على متوسط قيمة الطلب الفعلي من سلة</div>
+        <div class="table-wrap">
+        <table class="cmp-table" style="min-width:560px;">
+            <thead><tr><th>المؤشر</th><th>القناة</th><th>قاعدة القرار</th></tr></thead>
+            <tbody>
+                <tr><td>العائد على الإنفاق (ROAS)</td><td>Google · Instagram</td><td>المرجع الأساسي لرفع أو خفض الميزانية، ويُقاس من أرقام سلة</td></tr>
+                <tr><td>تكلفة الطلب (CPA)</td><td>Google · Instagram</td><td>كلمة أو إعلان ينفق ضعف المستهدف دون تحويل يُوقف</td></tr>
+                <tr><td>معدل النقر (CTR)</td><td>Google Search</td><td>مجموعة إعلانية دون المتوسط تُعاد صياغة إعلاناتها</td></tr>
+                <tr><td>نسبة ظهور البحث (Impression Share)</td><td>Google Search</td><td>ضياع الظهور بسبب الميزانية في كلمات مربحة = مؤشر للرفع</td></tr>
+                <tr><td>تكلفة الإضافة للسلة</td><td>Instagram</td><td>تُستخدم مؤشراً مبكراً قبل تجمّع بيانات الشراء</td></tr>
+                <tr><td>الاتصالات وطلبات الاتجاهات</td><td>Google</td><td>تقيس أثر الحملة المحلية على زيارات الفرعين</td></tr>
+                <tr><td>نمو المتابعين ونسبة مشاهدة Reels</td><td>Instagram</td><td>تحدد الزوايا الإبداعية الأقوى لإعادة استخدامها</td></tr>
+            </tbody>
+        </table>
+        </div>
+    </div>
+
+    <!-- ======================== -->
+    <!-- WHAT WE WILL WORK ON -->
+    <!-- ======================== -->
+    <div class="section" style="border-top: 4px solid #1f2616;">
+        <h2 class="section-title" style="border-color:#1f2616;">🛠️ ما سيتم العمل عليه</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-bottom:24px;">
+            <div style="padding:16px;background:#f4f6ee;border-radius:10px;border-right:4px solid #556b2f;">
+                <div style="font-size:13px;font-weight:700;color:#3a4728;margin-bottom:8px;">1. تجهيز المتجر والتتبع</div>
+                <div style="font-size:12px;color:#3a4728;line-height:1.7;">العمل على معالجة ملاحظات المتجر وربط أدوات التتبع على Google وMeta قبل تشغيل أي إنفاق.</div>
+            </div>
+            <div style="padding:16px;background:#f0fdf4;border-radius:10px;border-right:4px solid #22c55e;">
+                <div style="font-size:13px;font-weight:700;color:#14532d;margin-bottom:8px;">2. إطلاق Google وInstagram</div>
+                <div style="font-size:12px;color:#064e3b;line-height:1.7;">العمل على تشغيل الحملات بالتوزيع المتفق عليه، دون تعديلات مبكرة خلال مرحلة التعلّم.</div>
+            </div>
+            <div style="padding:16px;background:#eff6ff;border-radius:10px;border-right:4px solid #2563eb;">
+                <div style="font-size:13px;font-weight:700;color:#1e40af;margin-bottom:8px;">3. متابعة وتقارير دورية</div>
+                <div style="font-size:12px;color:#1e3a8a;line-height:1.7;">توفير تقرير أداء دوري يقارن النتائج بالمستهدف، ويحدد خطوة الرفع التالية في الميزانية.</div>
+            </div>
+        </div>
+
+        <div class="section-sub" style="margin-bottom:10px;padding-right:0;">اختبارات الأداء المخطط لها</div>
+        <div class="idea-grid">
+            <div class="idea-card" style="border-color:#1f2616;">
+                <div class="idea-title" style="color:#1f2616;"><span class="idea-num" style="background:#1f2616;">1</span>اختبار المحتوى (Creative Test)</div>
+                <div class="idea-text">Reels الورشة مقابل صور المنتج الثابتة مقابل الكاروسيل، على الجمهور نفسه.</div>
+            </div>
+            <div class="idea-card" style="border-color:#1f2616;">
+                <div class="idea-title" style="color:#1f2616;"><span class="idea-num" style="background:#1f2616;">2</span>اختبار النطاق الجغرافي</div>
+                <div class="idea-text">الرياض وحدها مقابل المملكة كاملة، لقياس أثر قرب الفروع على معدل التحويل.</div>
+            </div>
+            <div class="idea-card" style="border-color:#1f2616;">
+                <div class="idea-title" style="color:#1f2616;"><span class="idea-num" style="background:#1f2616;">3</span>اختبار الرسالة</div>
+                <div class="idea-text">رسالة «الخيّاط المتخصص والضمان» مقابل رسالة السعر والعرض.</div>
+            </div>
+            <div class="idea-card" style="border-color:#1f2616;">
+                <div class="idea-title" style="color:#1f2616;"><span class="idea-num" style="background:#1f2616;">4</span>اختبار صفحة الهبوط</div>
+                <div class="idea-text">صفحة المنتج مباشرة مقابل صفحة القسم، بالمحتوى والجمهور نفسيهما.</div>
+            </div>
+            <div class="idea-card" style="border-color:#1f2616;">
+                <div class="idea-title" style="color:#1f2616;"><span class="idea-num" style="background:#1f2616;">5</span>اختبار العرض</div>
+                <div class="idea-text">شحن مجاني مقابل تطريز الاسم مجاناً، لمعرفة الحافز الأقوى لدى الجمهور.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div style="text-align:center;padding:20px;color:#94a3b8;font-size:12px;">
+        إعداد: <a href="https://wa.me/201558636063" style="color:#556b2f;text-decoration:none;font-weight:700;">Ahmed Shaaban — أحمد شعبان</a> · أخصائي تسويق الأداء (Performance Marketer)
+    </div>
+
+</div>
+</body>
+</html>
